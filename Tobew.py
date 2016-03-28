@@ -61,6 +61,8 @@ async def on_message(message):
         elif message.content.startswith('!debug'):
             if message.author.id == '98468948634271744':
                 await command_debug(message)
+        elif message.content.startswith('┬─┬ ノ( ゜-゜ノ)'):
+            await command_tableflip(message)
 
 
 async def command_hello(message):
@@ -200,6 +202,10 @@ async def command_debug(message):
     except Exception as e:
         result = '{0.__name__}: {1}'.format(type(e), e)
         await client.send_message(message.channel, '```Python\n{}\n```'.format(result))
+        
+async def command_tableflip(message):
+    await client.send_message(message.channel,
+                              '( ° ͜ʖ͡°)╭∩╮')
 
 local = 0
 
