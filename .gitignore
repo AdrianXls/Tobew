@@ -1,6 +1,4 @@
 .idea
 /cogs/utils/__pycache__
-Procfile
-runtime.txt
 credentials.json
 tobew.log
