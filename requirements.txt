@@ -1,0 +1,6 @@
+-e git+https://github.com/Rapptz/discord.py@async#egg=Package
+beautifulsoup4
+pafy
+soundcloud
+six
+youtube-dl
