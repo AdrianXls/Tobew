@@ -2,6 +2,7 @@ import datetime
 import logging
 import time
 
+import json
 import os
 import discord
 import pafy
@@ -18,6 +19,11 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 client = discord.Client()
+
+
+def load_credentials():
+    with open('credentials.json') as f:
+        return json.load(f)
 
 
 @client.event
@@ -195,5 +201,10 @@ async def command_debug(message):
         result = '{0.__name__}: {1}'.format(type(e), e)
         await client.send_message(message.channel, '```Python\n{}\n```'.format(result))
 
+local = 0
 
-client.run(os.environ['USER'], os.environ['PASSWORD'])
+if local == 0:
+    client.run(os.environ['USER'], os.environ['PASSWORD'])
+elif local == 1:
+    credentials = load_credentials()
+    client.run(credentials['email'], credentials['password'])
