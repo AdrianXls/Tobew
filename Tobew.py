@@ -178,12 +178,14 @@ async def command_user(message):
 
 
 async def command_about(message):
+    revision = os.popen(r'git show -s HEAD --format="%s (%cr)"').read().strip()
     uptime = str(datetime.timedelta(seconds=int(time.time() - start_time)))
     await client.send_message(message.channel, '**About me:**\n'
                                                'Author: Toosmo (Discord ID: 98468948634271744)\n'
                                                'Library: discord.py {} (Python)\n'
+                                               'Current revision: {}\n'
                                                'Uptime: **{} days, {} minutes and {} seconds**'
-                              .format(discord.__version__, uptime[:1], uptime[2:4], uptime[5:7]))
+                              .format(discord.__version__, revision, uptime[:1], uptime[2:4], uptime[5:7]))
 
 
 async def command_debug(message):
