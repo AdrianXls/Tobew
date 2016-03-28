@@ -1,8 +1,9 @@
 import datetime
-import json
 import logging
 import time
 
+import json
+import os
 import discord
 import pafy
 import requests
@@ -137,7 +138,7 @@ async def command_server(message):
                                   message.channel.server.id,
                                   message.channel.server.icon_url,
                                   message.channel.server.region,
-                                  message.channel.server.owner.created_at,
+                                  message.channel.server.created_at,
                                   online,
                                   str(len(message.channel.server.members))))
 
@@ -200,6 +201,10 @@ async def command_debug(message):
         result = '{0.__name__}: {1}'.format(type(e), e)
         await client.send_message(message.channel, '```Python\n{}\n```'.format(result))
 
+local = 0
 
-credentials = load_credentials()
-client.run(credentials['email'], credentials['password'])
+if local == 0:
+    client.run(os.environ['USER'], os.environ['PASSWORD'])
+elif local == 1:
+    credentials = load_credentials()
+    client.run(credentials['email'], credentials['password'])
