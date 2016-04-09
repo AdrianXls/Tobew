@@ -63,6 +63,8 @@ async def on_message(message):
                 await command_debug(message)
         elif message.content.startswith('┬─┬ ノ( ゜-゜ノ)'):
             await command_tableflip(message)
+        elif message.content.startswith('!stayout'):
+            await command_stayout(message)
 
 
 async def command_hello(message):
@@ -206,6 +208,9 @@ async def command_debug(message):
 async def command_tableflip(message):
     await client.send_message(message.channel,
                               '( ° ͜ʖ͡°)╭∩╮')
+async def command_stayout(message):
+    await client.send_message(message.channel,
+                              'http://i.imgur.com/3g21EdL.png')
 
 local = 0
 
